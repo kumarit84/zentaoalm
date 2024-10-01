@@ -1,0 +1,21 @@
+---
+name: ZenTaoPMS OPEN LDAP Plugin
+code: ldap
+type: extension
+copyright: xx
+author: 'xx<twobx@gamil.com>'
+abstract: Support Open LDAP 
+desc: >
+  Provide Open LDAP user import for ZenTaoPMS
+install: |
+license: GPL V3
+releases:
+  1.0:
+    zentaoversion: 18.7
+    charge: free
+    license: GPL V3
+    changelog: |
+      1. support default group
+      2. Dynamic Switched LDAP
+      3. support store mobile
+    date: 2023
