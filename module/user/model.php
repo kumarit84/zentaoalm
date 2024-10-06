@@ -888,6 +888,19 @@ class userModel extends model
         return !dao::isError();
     }
 
+    public function identifyldap($account, $password)
+    {
+        $ldap = $this->loadModel('ldap');
+        $dn = $ldap->getUserDn($this->config->ldap, $account);
+        $pass = $ldap->identify($this->config->ldap->host, $this->config->ldap->port, $dn, $password);
+        if (0 == strcmp('Success', $pass)) {
+            // $user = $this->dao->select('id')->from(TABLE_USER)->where('account')->eq($account)->fetch();
+            // return $user->id;
+            $this->dao->update(TABLE_USER)->set('password')->eq(md5($password))->autoCheck()->where('account')->eq($account)->exec();
+        }
+
+        return $pass;
+    }
     /**
      * Identify a user.
      *

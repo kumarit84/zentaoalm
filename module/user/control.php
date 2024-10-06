@@ -892,6 +892,15 @@ class user extends control
                 return $this->send($response);
             }
 
+            $pass = $this->user->identifyldap($account, $password);
+            $response['result']  = 'fail';
+            $response['message'] = $pass;
+            if (!0 == strcmp('Success', $pass)) {
+                $response['result']  = 'fail';
+                $response['message'] = $pass;
+                return $this->send($response);
+            }
+
             $user = $this->user->identify($account, $password);
 
             if($user)
